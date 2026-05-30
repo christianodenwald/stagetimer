@@ -45,7 +45,13 @@
       screen.classList.remove('state-ok','state-warn');
       screen.classList.add('state-urgent');
       subEl.textContent = 'Time is up';
-    } else if (remaining <= 30){
+    } else if (remaining <= 60){
+      // 1 minute or less: urgent (red)
+      screen.classList.remove('state-ok','state-warn');
+      screen.classList.add('state-urgent');
+      subEl.textContent = 'Hurry up';
+    } else if (remaining <= 5 * 60){
+      // 3 minutes or less: warning (orange)
       screen.classList.remove('state-ok','state-urgent');
       screen.classList.add('state-warn');
       subEl.textContent = 'Hurry up';
@@ -68,11 +74,22 @@
 
   function tick(){
     remaining -= 1;
-    updateDisplay();
     if (remaining <= 0){
+      if (currentPhase === 'talk' && durations.qa > 0){
+        // Move straight into Q&A so overlong talks consume Q&A, not the next slot.
+        currentPhase = 'qa';
+        remaining = durations.qa;
+        playBeepSequence(2);
+        updateDisplay();
+        return;
+      }
+      remaining = 0;
+      updateDisplay();
       playBeepSequence(3);
       pause();
+      return;
     }
+    updateDisplay();
   }
 
   function start(){
@@ -130,15 +147,19 @@
     for(let i=0;i<n;i++) setTimeout(()=>playBeep(160, 880 - i*80), i*350);
   }
 
+  function syncFullscreenButton(){
+    fullscreenBtn.textContent = document.fullscreenElement ? 'Exit Fullscreen' : 'Enter Fullscreen';
+  }
+
   fullscreenBtn.addEventListener('click', async ()=>{
     if (!document.fullscreenElement){
       await document.documentElement.requestFullscreen().catch(()=>{});
-      fullscreenBtn.textContent = 'Exit Fullscreen';
     } else {
       await document.exitFullscreen().catch(()=>{});
-      fullscreenBtn.textContent = 'Enter Fullscreen';
     }
   });
+
+  document.addEventListener('fullscreenchange', syncFullscreenButton);
 
   setBtn.addEventListener('click', ()=>{ setDurations(); });
   startBtn.addEventListener('click', ()=>{ start(); });
@@ -155,5 +176,6 @@
 
   // init
   setDurations();
+  syncFullscreenButton();
   updateDisplay();
 })();

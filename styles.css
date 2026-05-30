@@ -23,8 +23,14 @@ button{background:transparent;border:1px solid rgba(255,255,255,0.12);color:var(
 
 /* color states */
 .state-ok{background:linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.12));}
-.state-warn{background:linear-gradient(180deg, rgba(255,140,0,0.08), rgba(255,140,0,0.12));}
-.state-urgent{background:linear-gradient(180deg, rgba(255,0,0,0.08), rgba(255,0,0,0.12));}
+.state-warn{
+  background: linear-gradient(180deg, rgba(255,120,0,0.34), rgba(255,80,0,0.56));
+  box-shadow: inset 0 0 0 1px rgba(255,140,0,0.06);
+}
+.state-urgent{
+  background: linear-gradient(180deg, rgba(255,40,40,0.40), rgba(160,10,10,0.72));
+  box-shadow: inset 0 0 0 1px rgba(255,0,0,0.10);
+}
 
 @media (max-width:900px){
   #phase{font-size:3.2vh}

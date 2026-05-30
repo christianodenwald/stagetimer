@@ -15,6 +15,7 @@ python3 -m http.server 8000
 Controls
 
 - Set talk and Q&A minutes, then press `Set`.
+- The timer automatically switches from Talk to Q&A when Talk reaches 0.
 - `Start`, `Pause`, `Reset`, `Next Phase` buttons control the countdown.
 - Keyboard: `Space` to start/pause, `N` to go to next phase, `R` to reset.
 - Click `Enter Fullscreen` for a full-screen large display.
