@@ -130,6 +130,21 @@
 
   // simple beep using WebAudio
   const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+  // Resume audio context on first user gesture (required on iOS/iPadOS)
+  function resumeAudioOnGesture(){
+    if (!audioCtx) return;
+    if (audioCtx.state === 'suspended'){
+      const resume = ()=>{
+        audioCtx.resume().catch(()=>{});
+        document.removeEventListener('pointerdown', resume);
+        document.removeEventListener('touchstart', resume);
+      };
+      document.addEventListener('pointerdown', resume, {passive:true});
+      document.addEventListener('touchstart', resume, {passive:true});
+    }
+  }
+  resumeAudioOnGesture();
   function playBeep(ms=180, freq=880){
     try{
       const o = audioCtx.createOscillator();
