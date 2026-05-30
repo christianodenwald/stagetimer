@@ -57,5 +57,7 @@ Notes
 - Designed to run locally on your device; no external dependencies.
 
 ![](img/ok.png)
+
 ![](img/warn.png)
+
 ![](img/over.png)
