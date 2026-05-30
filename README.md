@@ -16,7 +16,6 @@ iPad / iOS notes
 
 - Open `index.html` in Safari on your iPad (or host and open from `http://localhost`).
 - To install as a fullscreen app: in Safari tap Share → "Add to Home Screen". The app will open standalone.
-- If audio doesn't play immediately on first tap, tap anywhere once to unlock sound (the app now resumes audio on first touch).
 - For best readability, rotate the iPad to landscape and tap `Enter Fullscreen`.
 
 Accessing from an iPad when Safari won't open local files
@@ -55,4 +54,3 @@ Files
 Notes
 
 - Designed to run locally on your device; no external dependencies.
-- If audio doesn't play on first press, click `Start` (browsers require a user gesture to unlock audio).

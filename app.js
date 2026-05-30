@@ -79,13 +79,11 @@
         // Move straight into Q&A so overlong talks consume Q&A, not the next slot.
         currentPhase = 'qa';
         remaining = durations.qa;
-        playBeepSequence(2);
         updateDisplay();
         return;
       }
       remaining = 0;
       updateDisplay();
-      playBeepSequence(3);
       pause();
       return;
     }
@@ -126,40 +124,6 @@
       remaining = durations.talk;
     }
     updateDisplay();
-  }
-
-  // simple beep using WebAudio
-  const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-
-  // Resume audio context on first user gesture (required on iOS/iPadOS)
-  function resumeAudioOnGesture(){
-    if (!audioCtx) return;
-    if (audioCtx.state === 'suspended'){
-      const resume = ()=>{
-        audioCtx.resume().catch(()=>{});
-        document.removeEventListener('pointerdown', resume);
-        document.removeEventListener('touchstart', resume);
-      };
-      document.addEventListener('pointerdown', resume, {passive:true});
-      document.addEventListener('touchstart', resume, {passive:true});
-    }
-  }
-  resumeAudioOnGesture();
-  function playBeep(ms=180, freq=880){
-    try{
-      const o = audioCtx.createOscillator();
-      const g = audioCtx.createGain();
-      o.type = 'sine'; o.frequency.value = freq;
-      o.connect(g); g.connect(audioCtx.destination);
-      g.gain.setValueAtTime(0.0001, audioCtx.currentTime);
-      g.gain.exponentialRampToValueAtTime(0.2, audioCtx.currentTime + 0.01);
-      o.start();
-      setTimeout(()=>{ g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.02); o.stop(); }, ms);
-    }catch(e){ console.warn('Audio failed', e); }
-  }
-
-  function playBeepSequence(n=2){
-    for(let i=0;i<n;i++) setTimeout(()=>playBeep(160, 880 - i*80), i*350);
   }
 
   function syncFullscreenButton(){
