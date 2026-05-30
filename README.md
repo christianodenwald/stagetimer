@@ -41,6 +41,7 @@ Controls
 
 - Set talk and Q&A minutes, then press `Set`.
 - The timer automatically switches from Talk to Q&A when Talk reaches 0.
+- The background turns orange at 5 minutes and red at 1 minute.
 - `Start`, `Pause`, `Reset`, `Next Phase` buttons control the countdown.
 - Keyboard: `Space` to start/pause, `N` to go to next phase, `R` to reset.
 - Click `Enter Fullscreen` for a full-screen large display.
@@ -54,3 +55,7 @@ Files
 Notes
 
 - Designed to run locally on your device; no external dependencies.
+
+![](img/ok.png)
+![](img/warn.png)
+![](img/over.png)
