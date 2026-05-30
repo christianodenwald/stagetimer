@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>StageTimer - Local</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <div class="top-bar">
+      <div class="inputs">
+        <label>Talk minutes <input id="talk-min" type="number" min="1" value="15"></label>
+        <label>Q&amp;A minutes <input id="qa-min" type="number" min="0" value="5"></label>
+        <button id="set-btn">Set</button>
+      </div>
+      <button id="fullscreen-btn">Enter Fullscreen</button>
+    </div>
+
+    <main id="timer-screen">
+      <div id="phase">Talk</div>
+      <div id="time" aria-label="time remaining">
+        <span id="time-min">15</span><span id="time-sep">:</span><span id="time-sec">00</span>
+      </div>
+      <div id="sub">Ready</div>
+    </main>
+
+    <div class="controls">
+      <button id="start-btn">Start</button>
+      <button id="pause-btn">Pause</button>
+      <button id="reset-btn">Reset</button>
+      <button id="next-btn">Next Phase</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

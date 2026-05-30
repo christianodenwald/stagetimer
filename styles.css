@@ -1,0 +1,51 @@
+:root{
+  --bg:#0b0f1a;
+  --fg:#ffffff;
+  --accent:#2ecc71;
+}
+*{box-sizing:border-box}
+html,body,#app{height:100%;}
+body{margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;background:var(--bg);color:var(--fg);display:flex;flex-direction:column}
+.top-bar{display:flex;justify-content:space-between;align-items:center;padding:12px 18px}
+.inputs label{margin-right:10px;font-size:14px}
+input[type=number]{width:64px;padding:6px;margin-left:6px;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:transparent;color:var(--fg)}
+button{background:transparent;border:1px solid rgba(255,255,255,0.12);color:var(--fg);padding:8px 12px;border-radius:6px;cursor:pointer}
+
+#timer-screen{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px}
+#phase{font-size:4.5vh;opacity:0.9}
+#time{font-size:clamp(120px, 24vw, 900px);line-height:0.9;font-weight:800;letter-spacing:-2px;display:inline-grid;grid-template-columns:auto auto auto;align-items:baseline;font-variant-numeric:tabular-nums}
+#time-min{justify-self:end;text-align:right}
+#time-sep{justify-self:center}
+#time-sec{justify-self:start;text-align:left;min-width:2ch}
+#sub{margin-top:12px;font-size:18px;opacity:0.85}
+
+.controls{display:flex;gap:10px;padding:16px;justify-content:center}
+
+/* color states */
+.state-ok{background:linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.12));}
+.state-warn{background:linear-gradient(180deg, rgba(255,140,0,0.08), rgba(255,140,0,0.12));}
+.state-urgent{background:linear-gradient(180deg, rgba(255,0,0,0.08), rgba(255,0,0,0.12));}
+
+@media (max-width:900px){
+  #phase{font-size:3.2vh}
+  #time{font-size:clamp(72px, 30vw, 420px)}
+}
+
+/* Fullscreen: hide chrome and emphasize timer */
+:fullscreen .controls,
+:-webkit-full-screen .controls,
+:fullscreen .top-bar,
+:-webkit-full-screen .top-bar {
+  display: none !important;
+}
+
+:fullscreen #time,
+:-webkit-full-screen #time {
+  font-size: clamp(300px, 34vw, 1600px) !important;
+}
+
+:fullscreen #phase,
+:-webkit-full-screen #phase {
+  font-size: 4vh !important;
+}
+
